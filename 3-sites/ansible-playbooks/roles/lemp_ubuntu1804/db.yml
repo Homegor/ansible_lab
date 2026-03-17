@@ -2,7 +2,8 @@
 # DO Community Playbooks: LEMP on Ubuntu 18.04
 ##################################################
 ---
-- hosts: db
+- hosts: Ub1
+  become: true
   vars_files:
     - vars/default.yml
 
@@ -34,17 +35,23 @@
         login_unix_socket: /var/run/mysqld/mysqld.sock
       ignore_errors: true
 
-    - name: Removes all anonymous user accounts
-      mysql_user:
-        name: ''
-        host_all: yes
-        state: absent
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
+#########
+#todo: Добавить нового пользователя яи выдать ему root права 
+#      Добавить создание базы для backend
+#########
 
-    - name: Removes the MySQL test database
-      mysql_db:
-        name: test
-        state: absent
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
+#    - name: Removes all anonymous user accounts
+#      mysql_user:
+#        name: root
+#        host_all: true
+#        state: absent
+#        login_user: root
+#        login_password: "{{ mysql_root_password }}"
+#        login_unix_socket: /var/run/mysqld/mysqld.sock
+
+#    - name: Removes the MySQL test database
+#      mysql_db:
+#        name: test
+#        state: absent
+#        login_user: root
+#        login_password: "{{ mysql_root_password }}"

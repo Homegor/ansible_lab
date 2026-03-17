@@ -2,7 +2,8 @@
 # DO Community Playbooks: Apache on Ubuntu 18.04
 ##################################################
 ---
-- hosts: front
+- hosts: Ub1
+  become: true
   vars_files:
     - vars/default.yml
 
@@ -12,7 +13,7 @@
     #   loop: [ 'aptitude' ]
 
     - name: Install Apache
-      apt: name=apache2 update_cache=yes state=latest
+      apt: name=apache2 update_cache=yes state=latest 
 
     - name: Create document root
       file:
