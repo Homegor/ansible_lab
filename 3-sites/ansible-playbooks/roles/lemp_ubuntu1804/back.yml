@@ -22,10 +22,10 @@
     
     - name: Copy config
       template:
-        src: "template/config.j2"
+        src: "config.j2"
         dest: "/var/www/html/mysute/config.php"
 
     - name: Copy index
       template:
-        src: "template/index.j2"
+        src: "index.j2"
         dest: "/var/www/html/mysute/index.php"
