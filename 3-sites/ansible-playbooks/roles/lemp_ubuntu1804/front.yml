@@ -14,20 +14,11 @@
 # Nginx Configuration
 
     # Sets Up PHP Info Page
-    - name: Sets Up PHP Info Page
-      template:
-        src: "files/info.php.j2"
-        dest: "/var/www/html/info.php"
     
     - name: Sets Nginx conf file
       template:
-        src: "files/nginx.conf.j2"
+        src: "templates/nginx.conf.j2"
         dest: "/etc/nginx/sites-available/{{ http_conf }}"
-
-    - name: Sets index file
-      template:
-        src: "templates/index.j2"
-        dest: "/var/www/html/index.html"
 
     - name: Enables new site
       file:

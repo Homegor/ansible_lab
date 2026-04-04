@@ -2,7 +2,7 @@
 # DO Community Playbooks: LEMP on Ubuntu 18.04
 ##################################################
 ---
-- hosts: Ub1
+- hosts: Ub2
   become: true
   vars_files:
     - vars/default.yml
@@ -34,6 +34,20 @@
         password: "{{ mysql_root_password }}"
         login_unix_socket: /var/run/mysqld/mysqld.sock
       ignore_errors: true
+
+    - name: Copy init srcripts
+      template:
+        src: "files/sript.j2"
+        dest: "/home/egor/script.sql"
+
+    - name: Импорт SQL файла в базу данных
+      mysql_db:
+        name: test_db                       # Целевая база данных
+        state: import                       # Указываем, что нужно импортировать
+        target: /home/egor/script.sql       # Путь к SQL файлу на удалённом хосте
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        login_host: localhost
 
 #########
 #todo: Добавить нового пользователя яи выдать ему root права 

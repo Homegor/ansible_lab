@@ -10,17 +10,22 @@
   tasks:
     - name: Install PHP Packages
       apt: name={{ item }} update_cache=yes state=latest
-      loop: [ 'php-fpm', 'php-mysql' ]
+      loop: ['php-fpm', 'php-mysql', 'php-cli', 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-zip']
     
 
 # Sets Up PHP Info Page
     - name: Creates directory
       file:
-        path: /var/www/html
+        path: /var/www/html/mysute
         state: directory
     
     
-    - name: Sets Up PHP Info Page
+    - name: Copy config
       template:
-        src: "files/info.php.j2"
-        dest: "/var/www/html/info.php"
+        src: "template/config.j2"
+        dest: "/var/www/html/mysute/config.php"
+
+    - name: Copy index
+      template:
+        src: "template/index.j2"
+        dest: "/var/www/html/mysute/index.php"
