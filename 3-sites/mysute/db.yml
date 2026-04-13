@@ -28,7 +28,7 @@
 
  # MySQL Configuration
     - name: restart mysql
-      command: service mysql start
+      command: service mysql restart
 
     - name: sleep
       shell: sleep 10
