@@ -25,7 +25,7 @@
     - name: Sets index file
       template:
         src: "templates/index.j2"
-        dest: "/var/www/html/index.html"
+        dest: "/var/www/html/mysute/index.html"
 
     - name: Enables new site
       file:
@@ -98,7 +98,7 @@
     - name: Sets Up PHP Info Page
       template:
         src: "files/info.php.j2"
-        dest: "/var/www/html/info.php"
+        dest: "/var/www/html/mysute/info.php"
 
   handlers:
     - name: Reload Nginx
