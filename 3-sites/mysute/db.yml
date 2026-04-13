@@ -12,9 +12,15 @@
       apt: name={{ item }} update_cache=yes state=latest
       loop: [ 'mysql-server', 'python3-pymysql' ]
     
+    - name: Изменить bind-address в конфиге MySQL
+      ansible.builtin.lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        regexp: '^bind-address\s*=\s*127.0.0.1'
+        line: 'bind-address = 0.0.0.0'
+        backup: yes
 
  # MySQL Configuration
-    - name: start mysql
+    - name: restart mysql
       command: service mysql start
 
     - name: sleep
