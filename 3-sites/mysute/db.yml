@@ -19,6 +19,13 @@
         line: 'bind-address = 0.0.0.0'
         backup: yes
 
+    - name: Изменить mysqlx-bind-address в конфиге MySQL
+      ansible.builtin.lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        regexp: '^mysqlx-bind-address\s*=\s*127.0.0.1'
+        line: 'mysqlx-bind-address = 0.0.0.0'
+        backup: yes
+
  # MySQL Configuration
     - name: restart mysql
       command: service mysql start
