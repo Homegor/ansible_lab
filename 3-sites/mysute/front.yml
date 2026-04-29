@@ -14,8 +14,6 @@
     
 # Nginx Configuration
 
-    # Sets Up PHP Info Page
-    
     - name: Sets Nginx conf file
       template:
         src: "nginx.conf.j2"
